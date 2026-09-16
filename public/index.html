@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101720"><title>Shack Doctor · Station diagnostics</title><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/styles.css"><script type="module" src="/app.js"></script></head>
+<body>
+<aside class="sidebar">
+ <a class="brand" href="/" aria-label="Shack Doctor home"><img src="/favicon.svg" alt=""><span>SHACK<span class="brand-light">DOCTOR</span><small>STATION DIAGNOSTICS</small></span></a>
+ <div class="workspace-label">YOUR WORKBENCH</div>
+ <nav aria-label="Main navigation"><button data-view="station" class="nav active"><span>◉</span> Station check <kbd>01</kbd></button><button data-view="profiles" class="nav"><span>▤</span> Saved setups <kbd id="profile-count">0</kbd></button><button data-view="history" class="nav"><span>↺</span> Check history <kbd>03</kbd></button></nav>
+ <div class="sidebar-bottom"><div class="local-mark">◈ &nbsp; LOCAL BY DESIGN</div><p>Your station data stays<br>on this computer.</p><div class="version">FIELD EDITION <span>v0.1 alpha</span></div></div>
+</aside>
+<div class="shell">
+ <header class="topbar"><div class="breadcrumb">Workbench <span>/</span> <strong id="crumb">Station check</strong></div><div class="top-right"><span class="read-only">Read-only inspection</span><span id="utc" class="mono"></span></div></header>
+ <main id="main">
+  <div class="page-heading"><div><div class="eyebrow">LESS TROUBLESHOOTING. MORE RADIO.</div><h1 id="page-title">Know your station.</h1><p id="page-subtitle">Follow the evidence. Find the break. Get back on the air.</p></div><div class="heading-actions"><button id="demo" class="button secondary">Explore demo</button><button id="scan" class="button primary"><span>⌁</span> Check this computer</button></div></div>
+  <div id="notice" class="notice" role="status" hidden></div>
+  <section id="station-view">
+   <div class="overview-grid">
+    <section class="health panel"><div class="section-kicker"><span>INSPECTION OVERVIEW</span><span id="source-badge" class="badge">NOT CHECKED</span></div><div class="health-body"><div class="dial" id="dial"><svg viewBox="0 0 180 180" aria-hidden="true"><circle class="dial-track" cx="90" cy="90" r="74"/><circle id="dial-progress" cx="90" cy="90" r="74"/></svg><div class="dial-value"><strong id="pass-count">—</strong><span id="dial-label">AWAITING CHECK</span></div></div><div class="health-copy"><h2 id="health-title">Start with a station check.</h2><p id="health-summary">Inspect Windows devices and WSJT-X settings, or explore a sample station.</p><div id="health-chips" class="chips"><span class="chip">6 diagnostic checks</span></div></div></div><div class="panel-foot"><span id="scan-time">No station data collected</span><span>NO TRANSMIT COMMANDS</span></div></section>
+    <section class="baseline panel"><div class="section-kicker"><span>YOUR RECOVERY POINT</span><span>↶</span></div><h2>Remember what worked.</h2><p>Keep a working setup. Next time something changes, see exactly what’s different.</p><div id="baseline-info" class="baseline-info"><span class="baseline-icon">▤</span><div><strong>No setup selected</strong><small>Save a snapshot after a successful session.</small></div></div><button id="save" class="button full secondary" disabled>＋ Save this setup</button></section>
+   </div>
+   <section class="signal-panel panel"><div class="section-kicker"><span>FOLLOW THE SIGNAL</span><span class="muted">Configuration & device presence · not a live signal trace</span></div><div id="signal-chain" class="signal-chain"></div></section>
+   <div class="results-heading"><div><h2>Station checks <span id="check-total">/ 06</span></h2><p>Every finding has evidence and a next step.</p></div><div class="filters" aria-label="Filter checks"><button class="selected" data-filter="all">All checks</button><button data-filter="attention">Needs attention <span id="attention-count">0</span></button></div></div>
+   <div id="checks" class="checks-grid"></div>
+   <div class="utility-row"><p>Custom WSJT-X instance? <button id="import" class="text-button">Import its settings</button><input type="file" id="ini-file" accept=".ini" hidden></p><button id="export" class="text-button" disabled>↓ Download diagnostic report</button></div>
+  </section>
+  <section id="profiles-view" hidden></section><section id="history-view" hidden></section>
+  <footer><span>SHACK DOCTOR <span class="footer-cross">✳</span> BUILT FOR THE TIME BETWEEN CONTACTS</span><a href="https://wsjt.sourceforge.io/wsjtx-main_en.html" target="_blank" rel="noreferrer">WSJT-X operating guide ↗</a></footer>
+ </main>
+</div>
+<dialog id="detail" aria-label="Diagnostic details"><div class="dialog-top"><span class="eyebrow">DIAGNOSTIC DETAIL</span><button class="icon-button" data-close aria-label="Close detail">✕</button></div><div id="detail-content"></div></dialog>
+<dialog id="save-dialog" aria-label="Save station setup"><form id="save-form"><div class="dialog-top"><span class="eyebrow">STATION SNAPSHOT</span><button type="button" class="icon-button" data-close aria-label="Close save dialog">✕</button></div><h2>Keep this setup.</h2><p>Save diagnostic settings locally for comparison. This snapshot does not change your radio or back up the full WSJT-X configuration.</p><label for="profile-name">Setup name</label><input id="profile-name" name="name" placeholder="e.g. Home shack · FT8" maxlength="60" required><label class="checkbox"><input type="checkbox" id="working"> I’ve made contacts successfully with these settings.</label><button class="button primary full" type="submit">Save setup</button></form></dialog>
+<div id="toast" class="toast" role="status" hidden></div>
+</body></html>
