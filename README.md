@@ -2,6 +2,8 @@
 
 A local Windows troubleshooting workbench for amateur radio stations. Inspect the evidence, compare a saved setup, and spend less time guessing.
 
+Looking for a QSO? Visit [On Air](https://qso.onair-radio.workers.dev/) to find an AllStar conversation.
+
 **Version 0.1.0 — working prototype.** This is a read-only diagnostic tool, not a verified station controller or an automatic repair tool.
 
 ## Open it
